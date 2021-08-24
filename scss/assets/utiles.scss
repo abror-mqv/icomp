@@ -1,0 +1,140 @@
+@import './variables';
+
+
+@mixin flex($fd, $jc, $ai, $wrap, $gap) {
+    display: flex;
+    flex-direction: $fd;
+    justify-content: $jc;
+    align-items: $ai;
+    flex-wrap: $wrap;
+    gap: $gap;
+};
+
+@mixin mainSections {
+    &__content {
+        padding:50px;
+        padding-top: 100px;
+        h2 {
+            text-align: center;
+            font-size: 52px;
+            margin-bottom: 50px;
+        }
+    }
+}
+
+@mixin hr($color) {
+    background-color: $color;
+    text-align: center;
+    margin: 30px auto;
+    height: 2px;
+    border-radius: 5px;
+    width: 50%;
+    border: none;
+}
+
+@mixin header {
+    
+}
+// ============================================ //
+
+
+// Fixed Btn 
+.topBtn {
+    cursor: pointer;
+    border-radius: 100px;
+    padding: 15px;
+    position: fixed;
+    right: -100%;
+    color: #fff;
+    bottom: 20px;
+    background-color: $red;
+    transition-duration: 0.5s;
+    z-index: 4;
+    border: none;
+    font-size: 28px;
+    &:hover {
+        box-shadow: 0 0 10px $red;
+    }
+}
+.topBtn__active {
+    right: 20px;
+}
+
+// Contact Modal
+
+.modal__overlay {
+    position: fixed;
+    z-index: -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    opacity: 0;
+    transition: opacity 0.3s;
+    
+    .modal__body {
+        width: 450px;
+        background: #fff;
+        border-radius: 5px;
+        padding: 20px 0;
+        .modal__header {
+            padding: 0 20px;
+            border-bottom: 1px solid #e3e3e3;
+            height: 15%;
+            @include flex(row, space-between, center, nowrap, 0);
+            h2 {
+                font-family: 'Source Sans Pro', sans-serif;
+            }
+            span {
+                cursor: pointer;
+                font-size: 32px;
+                color: #c1c1c1;
+            }
+        }
+        .modal__main {
+            padding: 10px 20px;
+            height: 65%;
+
+            form {
+                @include flex(unset, unset, unset, wrap, 10px);
+                .input__field {
+                    padding: 8px;
+                    border:none;
+                    outline: none;
+                    border-radius: 5px;
+                    background: #cccccc;
+                    font-size: 18px;
+                    width: 100%;
+                }
+            }
+        }
+        .modal__footer {
+            padding: 5px 20px;
+            border-top: 1px solid #e3e3e3;
+            height: 20%;
+            @include flex(row, flex-end, center, nowrap, 10px);
+            .modalBtn {
+                padding: 8px 13px;
+                border-radius: 5px;
+                font-size: 18px;
+                border: none;
+                cursor: pointer;
+                transition-duration: 0.3s;
+                &:hover {
+                    background: #cccccc;
+                }
+            }
+            .sendBtn {
+                background: tomato;
+                color: #f0f0f0;
+                &:hover {
+                    background: #c54e39;
+                }
+            }
+            
+        }
+    }
+
+}

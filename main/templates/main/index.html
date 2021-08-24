@@ -1,0 +1,125 @@
+{% extends "layout/base.html" %}
+
+{% block url-aboutus %}
+#about
+{% endblock %}
+{% block url-delivery %}
+#delivery
+{% endblock %}
+{% block url-garancy %}
+#garanty
+{% endblock %}
+{% block url-aboutus-b %}
+#about
+{% endblock %}
+{% block url-delivery-b %}
+#delivery
+{% endblock %}
+{% block url-garancy-b %}
+#garanty
+{% endblock %}
+
+{% block content %}
+<button class="topBtn"><i class="fas fa-arrow-up"></i></button>
+    
+<main class="main" id="main">
+    <div class="main__content">
+        <div class="main__section main__greet">
+            <div class="main__logo layer" data-speed="2">
+                <span class="logo"><span class="logo__i">i</span>COMP</span>
+            </div>
+        </div>
+
+        <div class="main__section main__catalog catalog">
+            <div class="catalog__content">
+                <h2 data-aos="fade-up">Каталог</h2>
+
+                <div class="catalog__blocks">
+                    {% for product in products %}
+                    <div class="catalog__block catBlock" data-aos="fade-up">
+                        <div class="catBlock__picture">
+                            <img src="{{ product.image.url }}" alt="изображение товара {{ product.fullname }}">
+                        </div>
+                        <div class="catBlock__main">
+                            <h3>{{ product.fullname }}</h3>
+                            <p>SSD: {{ product.mem_ssd}} GB</p>
+                            
+                            <button class="catBlock__btn"><a href="{% url 'dlaptop' product.id %}">Подробнее</a></button>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <a href="{% url 'catalog' %}" class="transBtn">Перейти в каталог</a>
+            </div>
+        </div>
+        <div class="main__section main__about about" id="about">
+            <div class="about__content">
+                <h2 data-aos="fade-up">О нас</h2>
+                <div class="about__main">
+                    <div class="about__first">
+                        <p class="about__text"  data-aos="fade-up">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores debitis veniam corrupti aliquid tempora nemo!</p>
+                    </div>
+                    <div class="about__second">
+                        <img src="https://picsum.photos/450/350" alt="" data-aos="fade-up">
+                        <div class="about__map">
+                            <iframe data-aos="fade-up" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5847.682506194591!2d74.61232299453295!3d42.876194677948604!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x389eb7c0cdbbae15%3A0xa6b565413fa531df!2z0KbQo9CcINCQ0LnRh9Kv0YDTqdC6!5e0!3m2!1sru!2skg!4v1627127272613!5m2!1sru!2skg" width="400" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main__section main__delivery delivery">
+            <div class="delivery__content" id="delivery">
+                <h2 data-aos="fade-up">Доставка</h2>
+
+                <div class="delivery__blocks">
+                    <div class="delivery__block delBlock" data-aos="fade-up">
+                        <div class="delBlock__icon">
+                            <i class="fas fa-hand-pointer"></i>
+                        </div>
+                        <div class="delBlock__text delBlock__text_good">
+                            <span><a href="{% url 'catalog' %}" class="a">Выбрать товар</a></span>
+                        </div>
+                    </div>
+
+                    <div class="delivery__block delBlock" data-aos="fade-up">
+                        <div class="delBlock__icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <div class="delBlock__text delBlock__text_contact">
+                            <span><a href="{% url 'catalog' %}" class="a">Связаться</a></span>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="delivery__hr">
+                <p class="delivery__text" data-aos="fade-up">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti velit exercitationem, ratione consequatur nostrum quae adipisci, nihil aspernatur perferendis ad incidunt? Autem atque alias repellendus ex, reiciendis quaerat, quasi nisi perspiciatis dolorum libero fugit eum rem. Incidunt dolor voluptatem eos beatae voluptatibus et, quam qui, maiores atque pariatur aspernatur dicta.</p>
+            </div>
+        </div>  
+
+        <div class="main__section main__garanty garanty" id="garanty">
+            <div class="garanty__content">
+                <h2 data-aos="fade-up">Гарантия</h2>
+
+                <div class="garanty__blocks">
+                    <div class="garanty__icon">
+                        <img src="./media/hourglass.png" alt="hourglass" data-aos="fade-up">
+                    </div>
+                    <div class="garanty__text">
+                        <p data-aos="fade-up">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, laboriosam!</p>
+                    </div>
+                </div>
+            </div>
+        </div>  
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="footer__content">
+        <span>copyright 2021&copy;</span>
+    </div>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+{% endblock %}

@@ -1,0 +1,81 @@
+
+.active__header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 5;
+}
+
+.catalog {
+    @include mainSections;
+    &__content {
+        padding: 0;
+        padding-top: 10px;
+        text-align: center
+    }
+    .catalog__blocks {
+        @include flex(unset, center, center, wrap, 30px);
+        margin-bottom: 50px;
+        .catBlock {
+            width: 300px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #aeaeae;
+            height: 350px;
+            &__picture {
+                height: 45%;
+                img {
+                    width: 100%;
+                }
+            }
+            &__main {
+                height: 55%;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                background: #fff;
+                h3 {
+                    margin-top: 5px;
+                    font-size: 18px;
+                }
+                p {
+                    opacity: 0.6;
+                    font-size: 14px;
+                }
+                .catBlock__btn {
+                    position: absolute;
+                    right: 0;
+                    bottom: 0;
+                    padding: 8px 13px;
+                    cursor: pointer;
+                    border: none;
+                    border-radius: 5px;
+                    background-color: #f0f0f0;
+                    font-size: 18px;
+                    transition-duration: 0.2s;
+                    a {
+                        color: #000;
+                        text-decoration: none;
+                    }
+                    &:hover {
+                        background-color: #c1c1c1;
+                    }
+                }
+            }
+        }
+    }
+    .transBtn {
+        padding: 8px 13px;
+        background-color: #e3e3e3;
+        border-radius: 5px;
+        border: none;
+        font-size: 28px;
+        color: #000;
+        text-decoration: none;
+        transition-duration: 0.3s;
+    }
+    .transBtn:hover {
+        background-color: #aeaeae;
+    }
+}

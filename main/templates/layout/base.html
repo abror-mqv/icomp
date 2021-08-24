@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles/css/styles.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200&display=swap" rel="stylesheet"> 
+</head>
+<body>
+    <style>
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap");
+.topBtn {
+  cursor: pointer;
+  border-radius: 100px;
+  padding: 15px;
+  position: fixed;
+  right: -100%;
+  color: #fff;
+  bottom: 20px;
+  background-color: #DA0037;
+  transition-duration: 0.5s;
+  z-index: 4;
+  border: none;
+  font-size: 28px;
+}
+.topBtn:hover {
+  box-shadow: 0 0 10px #DA0037;
+}
+
+.topBtn__active {
+  right: 20px;
+}
+
+.modal__overlay {
+  position: fixed;
+  z-index: -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.modal__overlay .modal__body {
+  width: 450px;
+  background: #fff;
+  border-radius: 5px;
+  padding: 20px 0;
+}
+.modal__overlay .modal__body .modal__header {
+  padding: 0 20px;
+  border-bottom: 1px solid #e3e3e3;
+  height: 15%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 0;
+}
+.modal__overlay .modal__body .modal__header h2 {
+  font-family: "Source Sans Pro", sans-serif;
+}
+.modal__overlay .modal__body .modal__header span {
+  cursor: pointer;
+  font-size: 32px;
+  color: #c1c1c1;
+}
+.modal__overlay .modal__body .modal__main {
+  padding: 10px 20px;
+  height: 65%;
+}
+.modal__overlay .modal__body .modal__main form {
+  display: flex;
+  flex-direction: unset;
+  justify-content: unset;
+  align-items: unset;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.modal__overlay .modal__body .modal__main form .input__field {
+  padding: 8px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  background: #cccccc;
+  font-size: 18px;
+  width: 100%;
+}
+.modal__overlay .modal__body .modal__footer {
+  padding: 5px 20px;
+  border-top: 1px solid #e3e3e3;
+  height: 20%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 10px;
+}
+.modal__overlay .modal__body .modal__footer .modalBtn {
+  padding: 8px 13px;
+  border-radius: 5px;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  transition-duration: 0.3s;
+}
+.modal__overlay .modal__body .modal__footer .modalBtn:hover {
+  background: #cccccc;
+}
+.modal__overlay .modal__body .modal__footer .sendBtn {
+  background: tomato;
+  color: #f0f0f0;
+}
+.modal__overlay .modal__body .modal__footer .sendBtn:hover {
+  background: #c54e39;
+}
+
+.burger__box {
+  width: 300px;
+  height: 100%;
+  background: #252525;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  transition-duration: 0.4s;
+  padding: 75px 15px;
+}
+.burger__box .burger__logo {
+  text-align: center;
+  margin-bottom: 15px;
+}
+.burger__box .burger__logo .b__logo {
+  font-weight: 700;
+  color: #fff;
+  transition-duration: 0.2s;
+  font-size: 48px;
+}
+@media screen and (max-width: 375px) {
+  .burger__box .burger__logo .b__logo {
+    color: #000;
+  }
+}
+.burger__box .burger__logo .b__logo .logo__i {
+  color: #DA0037;
+}
+.burger__box .burger__menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+}
+.burger__box .burger__menu li {
+  list-style-type: none;
+}
+.burger__box .burger__menu li .burger__item {
+  color: #f0f0f0;
+  text-decoration: none;
+  font-size: 28px;
+  cursor: pointer;
+}
+.menu__contactBtn {
+  color: #f0f0f0;
+  text-decoration: none;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+#burger__checkbox {
+  display: none;
+}
+
+.header__burger {
+  display: none;
+  background-color: red;
+  margin-top: 12px;
+  position: relative;
+  margin-right: 33px;
+}
+@media screen and (max-width: 1025px) {
+  .header__burger {
+    display: block;
+  }
+}
+
+.burger__label {
+  position: absolute;
+  width: 100%;
+  cursor: pointer;
+  width: 33px;
+  height: 20px;
+  z-index: 2;
+}
+
+.line {
+  height: 4px;
+  width: 100%;
+  position: absolute;
+  background-color: #000;
+  transition-duration: 0.2s;
+}
+
+.second {
+  top: 8px;
+}
+
+.third {
+  top: 8px;
+}
+
+.fourth {
+  bottom: 0;
+}
+
+#burger__checkbox:checked ~ label .first {
+  opacity: 0;
+}
+
+#burger__checkbox:checked ~ label .fourth {
+  opacity: 0;
+}
+
+#burger__checkbox:checked ~ label .second {
+  transform: rotate(45deg);
+}
+
+#burger__checkbox:checked ~ label .third {
+  transform: rotate(-45deg);
+}
+
+#burger__checkbox:checked ~ .burger__box {
+  right: 0;
+}
+
+.topBtn {
+  cursor: pointer;
+  border-radius: 100px;
+  padding: 15px;
+  position: fixed;
+  right: -100%;
+  color: #fff;
+  bottom: 20px;
+  background-color: #DA0037;
+  transition-duration: 0.5s;
+  z-index: 4;
+  border: none;
+  font-size: 28px;
+}
+.topBtn:hover {
+  box-shadow: 0 0 10px #DA0037;
+}
+
+.topBtn__active {
+  right: 20px;
+}
+
+.modal__overlay {
+  position: fixed;
+  z-index: -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.modal__overlay .modal__body {
+  width: 450px;
+  background: #fff;
+  border-radius: 5px;
+  padding: 20px 0;
+}
+.modal__overlay .modal__body .modal__header {
+  padding: 0 20px;
+  border-bottom: 1px solid #e3e3e3;
+  height: 15%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 0;
+}
+.modal__overlay .modal__body .modal__header h2 {
+  font-family: "Source Sans Pro", sans-serif;
+}
+.modal__overlay .modal__body .modal__header span {
+  cursor: pointer;
+  font-size: 32px;
+  color: #c1c1c1;
+}
+.modal__overlay .modal__body .modal__main {
+  padding: 10px 20px;
+  height: 65%;
+}
+.modal__overlay .modal__body .modal__main form {
+  display: flex;
+  flex-direction: unset;
+  justify-content: unset;
+  align-items: unset;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.modal__overlay .modal__body .modal__main form .input__field {
+  padding: 8px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  background: #cccccc;
+  font-size: 18px;
+  width: 100%;
+}
+.modal__overlay .modal__body .modal__footer {
+  padding: 5px 20px;
+  border-top: 1px solid #e3e3e3;
+  height: 20%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 10px;
+}
+.modal__overlay .modal__body .modal__footer .modalBtn {
+  padding: 8px 13px;
+  border-radius: 5px;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  transition-duration: 0.3s;
+}
+.modal__overlay .modal__body .modal__footer .modalBtn:hover {
+  background: #cccccc;
+}
+.modal__overlay .modal__body .modal__footer .sendBtn {
+  background: tomato;
+  color: #f0f0f0;
+}
+.modal__overlay .modal__body .modal__footer .sendBtn:hover {
+  background: #c54e39;
+}
+
+.active__header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 5;
+}
+
+.catalog__content {
+  padding: 50px;
+  padding-top: 100px;
+}
+.catalog__content h2 {
+  text-align: center;
+  font-size: 52px;
+  margin-bottom: 50px;
+}
+.catalog__content {
+  padding: 0;
+  padding-top: 10px;
+  text-align: center;
+}
+.catalog .catalog__blocks {
+  display: flex;
+  flex-direction: unset;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-bottom: 50px;
+}
+.catalog .catalog__blocks .catBlock {
+  width: 300px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #aeaeae;
+  height: 350px;
+}
+.catalog .catalog__blocks .catBlock__picture {
+  height: 45%;
+}
+.catalog .catalog__blocks .catBlock__picture img {
+  width: 100%;
+}
+.catalog .catalog__blocks .catBlock__main {
+  height: 55%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+.catalog .catalog__blocks .catBlock__main h3 {
+  margin-top: 5px;
+  font-size: 18px;
+}
+.catalog .catalog__blocks .catBlock__main p {
+  opacity: 0.6;
+  font-size: 14px;
+}
+.catalog .catalog__blocks .catBlock__main .catBlock__btn {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 8px 13px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  font-size: 18px;
+  transition-duration: 0.2s;
+}
+.catalog .catalog__blocks .catBlock__main .catBlock__btn a {
+  color: #000;
+  text-decoration: none;
+}
+.catalog .catalog__blocks .catBlock__main .catBlock__btn:hover {
+  background-color: #c1c1c1;
+}
+.catalog .transBtn {
+  padding: 8px 13px;
+  background-color: #e3e3e3;
+  border-radius: 5px;
+  border: none;
+  font-size: 28px;
+  color: #000;
+  text-decoration: none;
+  transition-duration: 0.3s;
+}
+.catalog .transBtn:hover {
+  background-color: #aeaeae;
+}
+
+body .main__header {
+  position: fixed;
+  z-index: 5;
+  top: 0;
+  width: 100%;
+  height: 80px;
+  background-color: #fff;
+  transition-duration: 0.5s;
+  border-bottom: 1px solid #e3e3e3;
+}
+body .main__header .mainHeader__content {
+  display: flex;
+  flex-direction: flex-start;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 0;
+  padding: 0 50px;
+  padding-top: 25px;
+}
+body .main__header .mainHeaderLogo .h__logo {
+  font-weight: 700;
+  color: #000;
+  transition-duration: 0.2s;
+  font-size: 24px;
+}
+body .main__header .mainHeaderLogo .h__logo .logo__i {
+  color: #DA0037;
+}
+body .main__header .mainHeaderLogo .active__logo {
+  color: #000000;
+}
+body .main__header .meinHeader__menu ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+}
+body .main__header .meinHeader__menu ul li {
+  list-style-type: none;
+}
+body .main__header .meinHeader__menu ul li a {
+  text-decoration: none;
+  font-size: 18px;
+  transition-duration: 0.2s;
+  font-weight: 600;
+  color: #000;
+}
+body .main__header .meinHeader__menu ul li a:hover {
+  opacity: 0.6;
+}
+body .active__header {
+  box-shadow: 0 0 10px 3px #5e5e5e;
+  background-color: #fff;
+}
+body .product__side {
+  margin-top: 20px;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  padding: 30px;
+  background-color: #fff;
+  gap: 20px;
+}
+@media screen and (max-width: 375px) {
+  body .product__side {
+    padding: 10px;
+  }
+}
+body .product__side .product__main {
+  display: flex;
+  gap: 20px;
+}
+@media screen and (max-width: 1025px) {
+  body .product__side .product__main {
+    flex-wrap: wrap;
+  }
+}
+body .product__side .product__main .product__info .info__name {
+  margin: 0;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+body .product__side .product__main .product__info h4 {
+  margin: 0;
+  margin-bottom: 20px;
+}
+body .product__side .product__main .product__info .product__clauses {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+body .product__side .product__main .product__info .product__clauses li {
+  list-style-type: none;
+  font-size: 16px;
+  color: grey;
+}
+body .product__side .product__main .product__info .product__clauses li span {
+  color: #000;
+}
+@media screen and (max-width: 665px) {
+  body .product__side .product__aside {
+    display: none;
+  }
+}
+body .product__side .product__aside .aside__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px 0px;
+}
+body .product__side .product__aside .aside__cards .aside__card {
+  width: 200px;
+  height: 300px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid #e3e3e3;
+}
+body .product__side .product__aside .aside__cards .aside__card .card__img {
+  height: 45%;
+}
+body .product__side .product__aside .aside__cards .aside__card .card__img img {
+  height: 100%;
+  width: 100%;
+  background-position: center;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+body .product__side .product__aside .aside__cards .aside__card .card__main {
+  background-color: #fff;
+  box-sizing: border-box;
+  padding: 10px;
+  height: 40%;
+}
+body .product__side .product__aside .aside__cards .aside__card .card__main h3 {
+  margin: 0;
+  font-size: 18px;
+}
+body .product__side .product__aside .aside__cards .aside__card .card__footer {
+  height: 15%;
+  box-sizing: border-box;
+  padding: 10px;
+  border-top: 1px solid #aeaeae;
+}
+body .product__side .product__aside .aside__cards .aside__card .card__footer button {
+  padding: 5px 8px;
+  float: right;
+  background-color: #aaadb9;
+  transition-duration: 0.2s;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 150px;
+  font-weight: bold;
+}
+body .product__side .product__aside .aside__cards .aside__card .card__footer button:hover {
+  background-color: #83858f;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body .header__back {
+  height: 80px;
+}
+body .header__back .header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 80px;
+  background-color: #3E3636;
+  z-index: 3;
+  transition-duration: 0.3s;
+}
+@media screen and (max-width: 1025px) {
+  body .header__back .header {
+    background-color: #fff;
+    border-bottom: 1px solid #e3e3e3;
+  }
+}
+body .header__back .header__content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  gap: 0;
+  padding: 20px 50px;
+}
+body .header__back .header__content .header__logo .h__logo {
+  font-weight: 700;
+  color: #fff;
+  transition-duration: 0.2s;
+  font-size: 32px;
+}
+@media screen and (max-width: 1025px) {
+  body .header__back .header__content .header__logo .h__logo {
+    color: #000;
+  }
+}
+body .header__back .header__content .header__logo .h__logo .logo__i {
+  color: #DA0037;
+}
+body .header__back .header__content .header__menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  gap: 15px;
+}
+@media screen and (max-width: 1025px) {
+  body .header__back .header__content .header__menu {
+    display: none;
+  }
+}
+body .header__back .header__content .header__menu li {
+  list-style-type: none;
+  margin-top: 5px;
+  cursor: pointer;
+}
+body .header__back .header__content .header__menu li .menu__item {
+  color: #fff;
+  text-decoration: none;
+  transition-duration: 0.2s;
+}
+body .header__back .header__content .header__menu li .menu__item::after {
+  display: block;
+  content: "";
+  height: 2px;
+  width: 0%;
+  background-color: #fff;
+  transition: width 0.3s ease-in-out;
+}
+body .header__back .header__content .header__menu li .menu__item:hover:after,
+body .header__back .header__content .header__menu li .menu__item:focus:after {
+  width: 100%;
+}
+body .header__back .active__header {
+  background-color: #fff;
+  box-shadow: 0 0 30px gray;
+  border-bottom: 1px solid lightgray;
+}
+body .header__back .active__header .header__content .header__logo .h__logo {
+  font-weight: 700;
+  color: #000;
+  transition-duration: 0.2s;
+  font-size: 32px;
+}
+body .header__back .active__header .header__content .header__logo .h__logo .logo__i {
+  color: #DA0037;
+}
+body .header__back .active__header .header__content .header__menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  gap: 15px;
+}
+body .header__back .active__header .header__content .header__menu li .menu__item {
+  color: #000000;
+}
+body .header__back .active__header .header__content .header__menu li .menu__item:hover {
+  color: #000000;
+}
+body .header__back .active__header .header__content .header__menu li .menu__item::after {
+  display: block;
+  content: "";
+  height: 2px;
+  width: 0%;
+  background-color: #000;
+  transition: width 0.3s ease-in-out;
+}
+body .header__back .active__header .header__content .header__menu li .menu__item:hover:after,
+body .header__back .active__header .header__content .header__menu li .menu__item:focus:after {
+  width: 100%;
+}
+@media screen and (max-width: 1025px) {
+  body .header__back .active__header .header__content .header__menu {
+    display: none;
+  }
+}
+body main .main__content .main__greet {
+  width: 100%;
+  height: 100vh;
+  background-color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+@media screen and (max-width: 1025px) {
+  body main .main__content .main__greet {
+    display: none;
+  }
+}
+body main .main__content .main__greet img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  object-fit: cover;
+}
+body main .main__content .main__greet .main__logo {
+  position: absolute;
+  font-weight: 700;
+  color: #fff;
+  font-size: 12vw;
+  margin-top: -80px;
+}
+body main .main__content .main__greet .main__logo span .logo__i {
+  color: #DA0037;
+}
+body main .main__content .about__content {
+  padding: 50px;
+  padding-top: 100px;
+}
+body main .main__content .about__content h2 {
+  text-align: center;
+  font-size: 52px;
+  margin-bottom: 50px;
+}
+@media screen and (max-width: 375px) {
+  body main .main__content .about__content {
+    padding: 0;
+  }
+}
+body main .main__content .about .about__main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+body main .main__content .about .about__main .about__first {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+body main .main__content .about .about__main .about__first .about__text {
+  max-width: 400px;
+}
+@media screen and (max-width: 375px) {
+  body main .main__content .about .about__main .about__first .about__text {
+    width: 100%;
+    text-align: center;
+  }
+}
+body main .main__content .about .about__main .about__second {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+body main .main__content .about .about__main .about__second img {
+  box-shadow: 0 0 30px gray;
+}
+@media screen and (max-width: 375px) {
+  body main .main__content .about .about__main .about__second img {
+    width: 320px;
+  }
+}
+@media screen and (max-width: 1025px) {
+  body main .main__content .about .about__main .about__second img {
+    width: 300px;
+  }
+}
+body main .main__content .about .about__main .about__second .about__map iframe {
+  width: 450px;
+  height: 450px;
+}
+@media screen and (max-width: 1025px) {
+  body main .main__content .about .about__main .about__second .about__map iframe {
+    width: 300px;
+    height: 300px;
+  }
+}
+body main .main__content .catalog__content {
+  padding: 50px;
+  padding-top: 100px;
+}
+body main .main__content .catalog__content h2 {
+  text-align: center;
+  font-size: 52px;
+  margin-bottom: 50px;
+}
+body main .main__content .catalog .catalog__blocks {
+  display: flex;
+  flex-direction: unset;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+body main .main__content .catalog .catalog__blocks .catBlock {
+  width: 300px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #aeaeae;
+  height: 350px;
+}
+body main .main__content .catalog .catalog__blocks .catBlock__picture {
+  height: 45%;
+}
+body main .main__content .catalog .catalog__blocks .catBlock__picture img {
+  width: 100%;
+}
+body main .main__content .catalog .catalog__blocks .catBlock__main {
+  height: 55%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+body main .main__content .catalog .catalog__blocks .catBlock__main h3 {
+  margin-top: 5px;
+  font-size: 18px;
+}
+body main .main__content .catalog .catalog__blocks .catBlock__main p {
+  opacity: 0.6;
+  font-size: 14px;
+}
+body main .main__content .catalog .catalog__blocks .catBlock__main .catBlock__btn {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 8px 13px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  font-size: 18px;
+  transition-duration: 0.2s;
+}
+body main .main__content .catalog .catalog__blocks .catBlock__main .catBlock__btn a {
+  color: #000;
+  text-decoration: none;
+}
+body main .main__content .catalog .catalog__blocks .catBlock__main .catBlock__btn:hover {
+  background-color: #c1c1c1;
+}
+body main .main__content .catalog .catalog__blocks .transBtn {
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+}
+body main .main__content .delivery__content {
+  padding: 50px;
+  padding-top: 100px;
+}
+body main .main__content .delivery__content h2 {
+  text-align: center;
+  font-size: 52px;
+  margin-bottom: 50px;
+}
+body main .main__content .delivery .delivery__blocks {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+body main .main__content .delivery .delivery__blocks .delivery__block {
+  width: 350px;
+  height: 250px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #e3e3e3;
+  cursor: pointer;
+}
+body main .main__content .delivery .delivery__blocks .delivery__block .delBlock__icon {
+  height: 50%;
+  display: flex;
+  flex-direction: unset;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 0;
+}
+body main .main__content .delivery .delivery__blocks .delivery__block .delBlock__icon i {
+  font-size: 100px;
+  color: #c1c1c1;
+}
+body main .main__content .delivery .delivery__blocks .delivery__block .delBlock__text {
+  height: 50%;
+  display: flex;
+  flex-direction: unset;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 0;
+  font-size: 32px;
+}
+body main .main__content .delivery .delivery__hr {
+  background-color: #DA0037;
+  text-align: center;
+  margin: 30px auto;
+  height: 2px;
+  border-radius: 5px;
+  width: 50%;
+  border: none;
+}
+body main .main__content .delivery .delivery__text {
+  margin-top: 35px;
+  text-align: center;
+  font-size: 18px;
+}
+body main .main__content .garanty__content {
+  padding: 50px;
+  padding-top: 100px;
+}
+body main .main__content .garanty__content h2 {
+  text-align: center;
+  font-size: 52px;
+  margin-bottom: 50px;
+}
+body main .main__content .garanty .garanty__blocks {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+body main .main__content .garanty .garanty__blocks .garanty__text {
+  font-size: 18px;
+}
+body main .main__content .garanty .garanty__blocks img {
+  width: 12vw;
+}
+body .footer {
+  height: 50px;
+  background-color: #EDEDED;
+}
+body .footer__content {
+  display: flex;
+  flex-direction: unset;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 0;
+  font-weight: 700;
+  font-size: 16px;
+  height: 100%;
+  opacity: 0.7;
+}
+.product__gallery img{
+  width: 450px;
+}
+.a {
+  color:#000;
+  text-decoration: none;
+}
+    </style>
+        <div class="modal__overlay">
+          <div class="modal__body">
+              <div class="modal__header">
+                  <h2 class="modal__title">Связаться</h2>
+                  <span class="x">&times;</span>
+              </div>
+              <div class="modal__main">
+                  <form action="">
+                      <input type="text" name="inputName" class="input__field input__name" placeholder="Имя">
+                      <input type="text" name="inputNumber" class="input__field input__number" placeholder="+996">
+                      <textarea class="input__field input__text" name="inputMsg" id="" cols="30" rows="10" placeholder="Сообщение.."></textarea>
+                  </form>
+              </div>
+              <div class="modal__footer">
+                  <button class="modalBtn closeBtn">закрыть</button>
+                  <button class="modalBtn sendBtn">Отправить</button>
+              </div>
+          </div>
+      </div>
+        <div class="header__back" id="main">
+          <header class="header fixed__header">
+              <div class="header__content">
+                  <div class="header__logo" data-aos="fade-up">
+                      <span class="h__logo"><span class="logo__i">i</span>COMP</span>
+                  </div>
+                  <ul class="header__menu">
+                      <li><a href="{% url 'homepage' %}" class="menu__item" data-aos="fade-up">Главная</a></li>
+                      <li><a href="{% block url-aboutus %}{% endblock %}" class="menu__item" data-aos="fade-up">о нас</a></li><!---->
+                      <li><a href="{% url 'catalog' %}" class="menu__item" data-aos="fade-up">каталог</a></li>
+                      <li><a href="{% block url-delivery %}{% endblock %}" class="menu__item" data-aos="fade-up">доставка</a></li><!---->
+                      <li><a href="{% block url-garancy %}{% endblock %}" class="menu__item" data-aos="fade-up">гарантия</a></li><!---->
+                      <li><a class="menu__item menu__contactBtn" data-aos="fade-up">контакты</a></li>
+                  </ul>
+  
+  
+                  <div class="header__burger">
+                      <input type="checkbox"id="burger__checkbox">
+                      <label for="burger__checkbox" class="burger__label">
+                          <div class="line first"></div>
+                          <div class="line second"></div>
+                          <div class="line third"></div>
+                          <div class="line fourth"></div>
+                      </label>
+      
+                      <div class="burger__box">
+                          <div class="burger__logo" data-aos="fade-up">
+                              <span class="b__logo"><span class="logo__i">i</span>COMP</span>
+                          </div>
+                          <ul class="burger__menu">
+                              <li><a href="{% url 'homepage' %}" class="burger__item">Главная</a></li>
+                              <li><a href="{% block url-aboutus-b %}{% endblock %}" class="burger__item">о нас</a></li>
+                              <li><a href="{% url 'catalog' %}" class="burger__item">каталог</a></li>
+                              <li><a href="{% block url-delivery-b %}{% endblock %}" class="burger__item">доставка</a></li>
+                              <li><a href="{% block url-garancy-b %}{% endblock %}" class="burger__item">гарантия</a></li>
+                              <li><a class="menu__contactBtn">контакты</a></li>
+                          </ul>
+                      </div>
+                  </div>
+  
+              </div>
+          </header>
+      </div>
+   {% block content %}
+   {% endblock %}
+<script>
+    // Init effects
+
+AOS.init({
+    duration: 650
+});
+
+// Header
+
+const header = document.querySelector(".header");
+
+window.addEventListener("scroll", () => {
+    if(header) {
+        let scrollPost = scrollY;
+        if(scrollPost > 1) {
+            header.classList.add("active__header");
+        }else {
+            header.classList.remove("active__header");
+        }
+        
+        // Fixed Button
+        const topBtn = document.querySelector(".topBtn");
+    
+        if(scrollPost > 500) {
+    
+        topBtn.classList.add("topBtn__active")
+    
+        }else {
+            topBtn.classList.remove("topBtn__active");
+        }
+    
+        topBtn.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    }
+})
+
+// great section 
+
+window.addEventListener("mousemove", e => {
+
+    if(window.innerWidth > 375) {
+        if(e.innerWidth > 375) {
+    
+            const layer = document.querySelectorAll(".layer");
+            layer.forEach(item => {
+                const speed = item.getAttribute("data-speed");
+        
+                const x = (window.innerHeight - e.pageX * speed) / 100
+                const y = (window.innerWidth - e.pageY * speed) / 100
+        
+                item.style.transform = `translateX(${x}px) translateY(${y}px)`
+            })
+        }
+    }
+})
+
+
+// Modal 
+
+const contactBtn = document.querySelector(".menu__contactBtn");
+const modalOverlay = document.querySelector(".modal__overlay");
+const closeBtn = document.querySelector(".closeBtn");
+const sendBtn = document.querySelector(".sendBtn");
+
+const inputData = document.querySelectorAll(".input__field");
+
+const x = document.querySelector(".x");
+
+contactBtn.addEventListener("click", () => {
+    modalOverlay.style.zIndex = 5;
+    modalOverlay.style.opacity = 1;
+});
+
+function closeModal() {
+    modalOverlay.style.zIndex = -1;
+    modalOverlay.style.opacity = 0;
+
+    for(every of inputData) {
+        every.value = '';
+    };
+};
+
+x.addEventListener("click", closeModal);
+closeBtn.addEventListener("click", closeModal);
+window.addEventListener("click", e => e.target === modalOverlay ? closeModal(): false)
+
+sendBtn.addEventListener("click", () => {
+    let isFilled = null
+    for(input of inputData) {
+        if(input.value) {
+            isFilled = true
+        }else {
+            isFilled = false
+            input.style.border = "1px solid red";
+            break;
+        }
+    };
+
+    if(isFilled) {
+        let data = {
+            name: null,
+            phone: null,
+            msg: null
+        }
+
+        for(input of inputData) {
+            input.style.border = "none";
+            
+
+            let attr = input.getAttribute('name');
+
+            if(attr === "inputName") {
+                data.name = input.value
+            }else if(attr === "inputNumber") {
+                data.phone = input.value
+            }else {
+                data.msg = input.value;
+            }
+        }
+        console.log(data);
+        closeModal();
+    }
+});
+
+</script>
+</body>
+</html>

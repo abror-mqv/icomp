@@ -1,0 +1,108 @@
+@import './utiles';
+
+@mixin adapt($break) {
+    @if $break == tablet {
+        @media screen and(max-width: 1025px) {@content}
+    };
+    @if $break == phone {
+        @media screen and(max-width: 375px) {@content}
+    };
+    @if $break == detail {
+      @media screen and(max-width: 665px) {@content}
+  }
+}
+
+.burger__box {
+    width: 300px;
+    height: 100%;
+    background: #252525;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    transition-duration: 0.4s;
+    padding: 75px 15px;
+    .burger__logo {
+        text-align: center;
+        margin-bottom: 15px;
+        .b__logo {
+            font-weight: 700;
+            color: #fff;
+            transition-duration: 0.2s;
+            font-size: 48px;
+            @include adapt("phone") {
+                color: #000;
+            }
+            .logo__i {
+                color: $red;
+            }
+        }
+    }
+    .burger__menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+        li {
+            list-style-type: none;
+            .burger__item {
+                color: #f0f0f0;
+                text-decoration: none;
+                font-size: 28px;
+            }
+        }
+    }
+}
+  #burger__checkbox {
+    display: none;
+  }
+  .header__burger {
+    display: none;
+    background-color: red;
+    margin-top: 12px;
+    position: relative;
+    margin-right: 33px;
+    @include adapt("tablet") {
+        display: block;
+    }
+  }
+  .burger__label {
+    position: absolute;
+    width: 100%;
+    cursor: pointer;
+    width: 33px;
+    height: 20px;
+    z-index: 2;
+  }
+  .line {
+    height: 4px;
+    width: 100%;
+    position: absolute;
+    background-color: #000;
+    transition-duration: 0.2s;
+  }
+  .second {
+    top: 8px;
+  }
+  .third {
+    top: 8px;
+  }
+  .fourth {
+    bottom: 0;
+  }
+  
+  #burger__checkbox:checked ~ label .first {
+    opacity: 0;
+  }
+  
+  #burger__checkbox:checked ~ label .fourth {
+    opacity: 0;
+  }
+  #burger__checkbox:checked ~ label .second {
+    transform: rotate(45deg);
+  }
+  #burger__checkbox:checked ~ label .third {
+    transform: rotate(-45deg);
+  }
+  #burger__checkbox:checked ~ .burger__box {
+    right: 0;
+  }

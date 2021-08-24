@@ -1,0 +1,60 @@
+{% extends "layout/base.html" %}
+
+{% block url-aboutus %}
+{% url 'about-us' %}
+{% endblock %}
+{% block url-delivery %}
+{% url 'about-us' %}
+{% endblock %}
+{% block url-garancy %}
+{% url 'about-us' %}
+{% endblock %}
+{% block url-aboutus-b %}
+{% url 'about-us' %}
+{% endblock %}
+{% block url-delivery-b %}
+{% url 'about-us' %}
+{% endblock %}
+{% block url-garancy-b %}
+{% url 'about-us' %}
+{% endblock %}
+
+{% block content %}
+
+<body>
+
+
+
+    <div class="catalog">
+        <div class="catalog__content">
+            <h2>Каталог</h2>
+
+            <div class="catalog__blocks">
+                <div class="catalog__blocks">
+                    {% for product in products %}
+                    <div class="catalog__block catBlock" data-aos="fade-up">
+                        <div class="catBlock__picture">
+                            <img src="{{ product.image.url }}" alt="изображение товара {{ product.fullname }}">
+                        </div>
+                        <div class="catBlock__main">
+                            <h3>{{ product.fullname }}</h3>
+                            <p>SSD: {{ product.mem_ssd}} GB</p>
+
+                            <button class="catBlock__btn"><a href="{% url 'dlaptop' product.id %}"> Подробнее</a></button>
+                        </div>
+                    </div>
+                    {% endfor %}  
+                </div>         
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer__content">
+            <span>copyright 2021&copy;</span>
+        </div>
+    </footer>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+
+{% endblock %}

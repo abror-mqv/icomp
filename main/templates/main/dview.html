@@ -1,0 +1,93 @@
+{% extends "layout/base.html" %}
+
+{% block url-aboutus %}
+{% url 'about-us' %}
+{% endblock %}
+{% block url-delivery %}
+{% url 'about-us' %}
+{% endblock %}
+{% block url-garancy %}
+{% url 'about-us' %}
+{% endblock %}
+{% block url-aboutus-b %}
+{% url 'about-us' %}
+{% endblock %}
+{% block url-delivery-b %}
+{% url 'about-us' %}
+{% endblock %}
+{% block url-garancy-b %}
+{% url 'about-us' %}
+{% endblock %}
+
+{% block content %}
+
+    
+    <div class="product__side product">
+        <div class="product__main">
+            <div class="product__gallery">
+                <img src="{{ laptop.image.url }}" alt="изображение товара {{ laptop.fullname }}">
+            </div>
+            <div class="product__info info">
+                <p class="info__name">{{ laptop.fullname}}</p>
+                <h4 class="product__title">Характеристики</h4>
+                <ul class="product__clauses">
+                    <div class="clauses__left">
+                        <li class="product__clause">Ram: <span>{{ laptop.ram }} GB</span></li>
+                        <li class="product__clause">SSD: <span>{{ laptop.mem_ssd }} GB</span></li>
+                        <li class="product__clause">HDD: <span>{{ laptop.mem_hdd }} GB</span></li>
+                        <li class="product__clause">CPU: <span>{{ laptop.cpu }}</span></li>
+                        <li class="product__clause">Videocard: <span>{{ laptop.graph }}</span></li>
+                        <li class="product__clause">OS: <span>{{ laptop.operating_system }}</span></li>
+                        <li class="product__clause">Display resolution: <span>{{ laptop.display_resolution }}px</span></li>
+                    </div>
+                    <div class="clauses__right">
+                        <li class="product__clause">Display size: <span>{{ laptop.display_size }} inches</span></li>
+                        <li class="product__clause">Body material: <span>{{ laptop.web_cam }}</span></li>
+                        <li class="product__clause">Web cam resolutions: <span>{{ laptop.body_material }} mp</span></li>
+                        <li class="product__clause">Battery capacity: 6000 mAh: <span>{{ laptop.battery_capacity }} mAh</span></li>
+                        <li class="product__clause">Weight: <span>{{ laptop.weight }} g</span></li>
+                        <li class="product__clause">Country: <span>{{ laptop.country }}</span></li>
+                        <li class="product__clause">Garancy: <span>{{ laptop.garancy }} months</span></li>
+                    </div>
+                </ul>
+            </div>
+        </div>
+
+        <div class="product__aside">
+
+            <div class="aside__cards">
+                <div class="aside__card">
+                    <div class="card__img">
+                        <img src="https://picsum.photos/200/250" alt="">
+                    </div>
+                    <div class="card__main">
+                        <h3 class="card__name">MacBook M1</h3>
+                    </div>
+                    <div class="card__footer">
+                        <button class="cardBtn">Подробнее</button>
+                    </div>
+                </div>
+                <div class="aside__card">
+                    <div class="card__img">
+                        <img src="https://picsum.photos/200/250" alt="">
+                    </div>
+                    <div class="card__main">
+                        <h3 class="card__name">MacBook M1</h3>
+                    </div>
+                    <div class="card__footer">
+                        <button class="cardBtn">Подробнее</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <footer class="footer">
+        <div class="footer__content">
+            <span>copyright 2021&copy;</span>
+        </div>
+    </footer>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+{% endblock %}
